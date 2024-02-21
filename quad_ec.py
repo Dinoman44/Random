@@ -1,11 +1,10 @@
 # function to make sure only an integer is input
-def get_int(s):
-    while True:
-        x = input(s)
-        try:
-            return int(x)
-        except ValueError:
-            print("Value must be integer")
+def get_num(s):
+    try:
+        return float(input(s))
+    except ValueError:
+        print("Number input only")
+        return get_num(s)
 
 
 # intro to program
@@ -13,12 +12,12 @@ print("Quadratic equation solver")
 print("Given equation in the form ax^2 + bx + c = 0, enter coefficients a, b, c one by one to get results")
 
 # gets coefficients of x
-a = get_int("Input coefficient a: ")
+a = get_num("Input coefficient a: ")
 while a == 0:
     print("a cannot be = 0")
-    a = get_int("Input coefficient a: ")
-b = get_int("Input coefficient b: ")
-c = get_int("Input coefficient c: ")
+    a = get_num("Input coefficient a: ")
+b = get_num("Input coefficient b: ")
+c = get_num("Input coefficient c: ")
 
 # calculates discriminant and checks if roots are real or not
 discriminant = (b**2) - (4 * a * c)
@@ -41,8 +40,8 @@ print(f"Solution 1:\nx = {sol1:.3f}\n")
 print(f"Solution 2:\nx = {sol2:.3f}\n")
 
 if should_calculate_vertex:
-    xcoord = (sol1 + sol2)/2
-    ycoord = (a*(xcoord**2) + b*xcoord + c)
+    xcoord = (sol1 + sol2) / 2
+    ycoord = (a * (xcoord**2) + b * xcoord + c)
     print(f"Vertex is at ({xcoord:.3f}, {ycoord:.3f})")
 else:
     print("Vertex can be calculated only by completing the square")
